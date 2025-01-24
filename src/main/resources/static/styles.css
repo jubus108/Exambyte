@@ -1,0 +1,53 @@
+body {
+    background-color: lightblue;
+}
+
+#mainContainer {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    margin: auto;
+}
+
+#headlineContainer {
+    grid-area: 2 / 2 / 4 / 4;
+}
+
+
+h1,#subHeadline {
+    font-family: Consolas, sans-serif;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 0;
+}
+
+#loginFormContainer {
+    grid-area: 2 / 5 / 3 / 7;
+    color: white;
+    background-color: #2e62ff;
+    border-radius: 25px;
+    padding-left: 5ex;
+    padding-top: 2ex;
+    padding-bottom: 1ex;
+}
+
+#loginText,label {
+    font-family: Arial, sans-serif;
+}
+
+#loginText {
+    font-size: 32px;
+}
+
+.loginFormArea {
+    margin: 1ex;
+}
+
+button {
+    padding: 0.5ex 1ex 0.5ex 1ex;
+    border-radius: 5px;
+}
