@@ -14,11 +14,11 @@ public class SecurityConfig {
                         // Haupt- und Loginseiten sollen öffentlich zugänglich sein, alles andere nur mit Authentifizierung
                         configurer -> configurer.requestMatchers("/", "/login").permitAll()
                                 .anyRequest().authenticated()
-                );
-//                .oauth2Login(config ->
-//                        config.userInfoEndpoint(
-//                                info -> info.userService(new AppUserService())
-//                        ));
+                )
+                .oauth2Login(config ->
+                        config.userInfoEndpoint(
+                                info -> info.userService(new AppUserService())
+                        ));
         return chainBuilder.build();
     }
 }
