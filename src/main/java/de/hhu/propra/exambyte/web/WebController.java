@@ -1,5 +1,10 @@
 package de.hhu.propra.exambyte.web;
 
+import de.hhu.propra.exambyte.config.AdminOnly;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,21 +24,22 @@ public class WebController {
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Verweist auf die Thymeleaf-Template-Datei "login.html"
+        return "login";
     }
 
-    @PostMapping("/login")
-    public String loginVerarbeitung(
-            @RequestParam("username") String username,
-            @RequestParam("password") String password,
-            Model model) {
+    @GetMapping("/dashboard")
+    public String indexPrivate(@AuthenticationPrincipal OAuth2User principal, Model model) {
+        String login = principal.getAttribute("login");
+        model.addAttribute("name", login);
+        return "dashboard";
+    }
 
-        // Dummy-Validierung (nur zur Demonstration)
-        if (username.equals("user") && password.equals("password")) {
-            return "redirect:/home";
-        } else {
-            model.addAttribute("error", "Ungültige Anmeldedaten");
-            return "redirect:/login";
-        }
+    @GetMapping("/admin")
+    @Secured("ROLE_ADMIN")
+    public String admin(Model model, @AuthenticationPrincipal OAuth2User principal) {
+        model.addAttribute("user",
+                principal != null ? principal.getAttribute("login") : null
+        );
+        return "admin";
     }
 }
