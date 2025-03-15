@@ -1,13 +1,12 @@
-package de.propra.exambyte;
+package de.hhu.propra.exambyte;
 
-import de.propra.exambyte.domain.model.propratest.Frage;
-import de.propra.exambyte.domain.model.propratest.FragenType;
+import de.hhu.propra.exambyte.domain.model.propratest.Frage;
+import de.hhu.propra.exambyte.domain.model.propratest.FragenType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,4 +43,5 @@ public class ProPraTestTest {
         // assert
         assertThat(frage.antworten()).isEqualTo(antworten);
     }
+
 }

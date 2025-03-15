@@ -1,9 +1,8 @@
-package de.propra.exambyte;
+package de.hhu.propra.exambyte;
 
-import de.propra.exambyte.web.DashboardController;
+import de.hhu.propra.exambyte.web.TestController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -11,16 +10,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(DashboardController.class)
-public class DashboardTest {
+@WebMvcTest(TestController.class)
+public class TestControllerTest {
 
     @Autowired
     MockMvc mvc;
 
     @Test
-    @DisplayName("Die Startseite ist unter /home erreichbar")
-    void test_dashboard1() throws Exception {
-        mvc.perform(get("/home"))
+    @DisplayName("Die Testseite ist unter /home/test erreichbar")
+    void test_testView1() throws Exception {
+        mvc.perform(get("/home/test"))
                 .andExpect(status().isOk());
     }
 }

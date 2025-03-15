@@ -1,6 +1,5 @@
-package de.propra.exambyte.domain.model.propratest;
+package de.hhu.propra.exambyte.domain.model.propratest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public record Frage<Antwort extends HashMap>(FragenType type, int punkte, String titel, String aufgabenstellung, Antwort antworten) {

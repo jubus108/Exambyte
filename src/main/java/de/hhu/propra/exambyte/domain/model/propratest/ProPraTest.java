@@ -1,4 +1,4 @@
-package de.propra.exambyte.domain.model.propratest;
+package de.hhu.propra.exambyte.domain.model.propratest;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
