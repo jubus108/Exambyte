@@ -1,3 +1,6 @@
+server:
+    port: 8080
+
 logging:
     level:
         org:
@@ -16,4 +19,3 @@ spring:
 exambyte:
     rollen:
         admin: jubus108
-        tutor: jubus108

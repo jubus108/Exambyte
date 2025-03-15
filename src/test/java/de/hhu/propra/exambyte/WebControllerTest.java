@@ -36,10 +36,19 @@ public class WebControllerTest {
                 .andExpect(status().isOk());
     }
 
+//    @Test
+//    @WithMockOAuth2User(login="something", roles = {"USER", "ADMIN"})
+//    @DisplayName("Authentifizierte Nutzer:in wird automatisch von / nach /dashboard weitergeleitet")
+//    void test_auth1() throws Exception {
+//        mvc.perform(get("/"))
+//                .andExpect(status().isOk());
+//        //.andExpect(model().attribute("name", "something");
+//    }
+
     @Test
     @WithMockOAuth2User(login="something")
     @DisplayName("/dashboard ist nur für authentifizierte Nutzer erreichbar")
-    void test_auth() throws Exception {
+    void test_auth2() throws Exception {
         mvc.perform(get("/dashboard"))
                 .andExpect(status().isOk());
                 //.andExpect(model().attribute("name", "something");

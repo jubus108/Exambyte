@@ -2,23 +2,27 @@ package de.hhu.propra.exambyte.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Configuration
-public class WebSecurityConfig {
+public class WebSecurityConfig{
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity chainBuilder) throws Exception {
         chainBuilder.authorizeHttpRequests(
-                        // Haupt- und Loginseiten sollen öffentlich zugänglich sein, alles andere nur mit Authentifizierung
-                        configurer -> configurer.requestMatchers("/", "/login","/error", "/css/*", "/img/**").permitAll()
+                        configurer -> configurer
+                                .requestMatchers("/", "/login", "/error", "/css/*", "/img/**").permitAll()
                                 .anyRequest().authenticated()
                 )
-                .oauth2Login(config ->
-                        config.userInfoEndpoint(
-                                info -> info.userService(new AppUserService())
-                        ));
+                .logout(l -> l.logoutSuccessUrl("/").permitAll())
+                .oauth2Login(Customizer.withDefaults());
         return chainBuilder.build();
     }
+
+
 }
