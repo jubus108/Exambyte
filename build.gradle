@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'org.flywaydb.flyway' version '11.1.0'
+	//id 'org.flywaydb.flyway' version '11.1.0'
 }
 
 group = 'de.hhu.propra'
@@ -21,27 +21,29 @@ repositories {
 }
 
 dependencies {
+	// General
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-
 	// Tests
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.testcontainers:junit-jupiter'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'com.tngtech.archunit:archunit-junit5-engine:1.4.0'
+	//testImplementation 'org.mockito:mockito-core:5.16.1'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	// Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'com.tngtech.archunit:archunit-junit5-engine:0.22.0'
 	//  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	// Security Tests
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	//DBS + Migration
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	//implementation 'org.flywaydb:flyway-core'
 	//implementation "org.flywaydb:flyway-database-postgresql"
 	//runtimeOnly 'org.postgresql:postgresql'
+	// Testcontainers
+	//testImplementation 'org.testcontainers:junit-jupiter'
 
 	// Development
 	//developmentOnly 'org.springframework.boot:spring-boot-devtools'

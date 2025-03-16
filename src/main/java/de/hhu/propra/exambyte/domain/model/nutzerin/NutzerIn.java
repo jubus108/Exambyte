@@ -1,10 +1,8 @@
 package de.hhu.propra.exambyte.domain.model.nutzerin;
 
-import org.springframework.data.annotation.Id;
-
 public class NutzerIn {
 
-    @Id
+    //@Id
     private final Integer id;
     private final String username;
 
