@@ -4,17 +4,17 @@ import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
-public class Test {
+public class ExambyteTest {
 
     @Id
     private Integer id;
-    private String testName;
+    private String name;
     private LocalDateTime startDatum;
     private LocalDateTime endDatum;
 
-    public Test(Integer id, String testname, LocalDateTime startDatum, LocalDateTime endDatum) {
+    public ExambyteTest(Integer id, String name, LocalDateTime startDatum, LocalDateTime endDatum) {
         this.id = id;
-        this.testName = testName;
+        this.name = name;
         this.startDatum = startDatum;
         this.endDatum = endDatum;
     }
@@ -23,8 +23,8 @@ public class Test {
         return id;
     }
 
-    public  String getTestName() {
-        return testName;
+    public  String getName() {
+        return name;
     }
 
     public LocalDateTime getStartDatum() {
@@ -39,7 +39,7 @@ public class Test {
     public String toString() {
         return "Test{" +
                 "id=" + id +
-                ", name='" + testName + "'" +
+                ", name='" + name + "'" +
                 ", startDatum=" + startDatum +
                 ", endDatum=" + endDatum;
     }
