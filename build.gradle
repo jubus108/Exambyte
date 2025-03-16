@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.flywaydb.flyway' version '11.1.0'
 }
 
 group = 'de.hhu.propra'
@@ -32,15 +33,28 @@ dependencies {
 	// Security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	//  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'com.tngtech.archunit:archunit-junit5-engine:0.22.0'
+	//  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 	//DBS + Migration
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	//implementation 'org.flywaydb:flyway-core'
+	//implementation "org.flywaydb:flyway-database-postgresql"
+	//runtimeOnly 'org.postgresql:postgresql'
+
+	// Development
+	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Configuration
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	//implementation 'org.springframework.data:spring-data-commons'
 }
 
-tasks.named('test') {
+//tasks.named('test') {
+test {
 	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+//	testLogging {
+//		events "passed", "skipped", "failed"
+//	}
 }

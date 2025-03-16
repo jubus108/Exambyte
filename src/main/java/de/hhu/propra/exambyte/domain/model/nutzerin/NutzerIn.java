@@ -1,19 +1,19 @@
 package de.hhu.propra.exambyte.domain.model.nutzerin;
 
-public abstract class NutzerIn {
+import org.springframework.data.annotation.Id;
 
-    private final int id;
-    private String username;
-    private String displayName;
-    private Rolle rolle;
+public class NutzerIn {
 
-    public NutzerIn(int id, String username) {
+    @Id
+    private final Integer id;
+    private final String username;
+
+    public NutzerIn(Integer id, String username) {
         this.id = id;
         this.username = username;
-        this.displayName = username;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -21,23 +21,11 @@ public abstract class NutzerIn {
         return username;
     }
 
-    public void setUsername(String nutzerName) {
-        this.username = nutzerName;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String nutzerName) {
-        this.displayName = nutzerName;
-    }
-
-    public Rolle getRolle() {
-        return rolle;
-    }
-
-    public void setRolle(Rolle rolle) {
-        this.rolle = rolle;
+    @Override
+    public String toString() {
+        return "Nutzer:in{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                "}";
     }
 }
