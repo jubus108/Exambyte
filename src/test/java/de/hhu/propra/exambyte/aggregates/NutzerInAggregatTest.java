@@ -1,4 +1,4 @@
-package de.hhu.propra.exambyte;
+package de.hhu.propra.exambyte.aggregates;
 
 import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
 import org.junit.jupiter.api.DisplayName;

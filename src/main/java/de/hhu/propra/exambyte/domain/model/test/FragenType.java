@@ -1,4 +1,4 @@
-package de.hhu.propra.exambyte.domain.model.propratest;
+package de.hhu.propra.exambyte.domain.model.test;
 
 public enum FragenType {
     MULTIPLE_CHOICE,

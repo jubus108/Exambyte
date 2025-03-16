@@ -1,4 +1,4 @@
-package de.hhu.propra.exambyte.domain.model.propratest;
+package de.hhu.propra.exambyte.domain.model.test;
 
 import java.util.HashMap;
 

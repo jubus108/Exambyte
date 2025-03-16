@@ -1,4 +1,4 @@
-package de.hhu.propra.exambyte;
+package de.hhu.propra.exambyte.controller;
 
 import de.hhu.propra.exambyte.config.MethodSecurityConfiguration;
 import de.hhu.propra.exambyte.helper.WithMockOAuth2User;

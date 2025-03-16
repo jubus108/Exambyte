@@ -25,7 +25,7 @@ public class NutzerIn {
     public String toString() {
         return "Nutzer:in{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + username + "'" +
                 "}";
     }
 }
