@@ -2,9 +2,9 @@ package de.hhu.propra.exambyte.domain.model.test;
 
 public abstract class Aufgabe {
 
-    private String name;
-    private String aufgabenstellung;
-    private int moeglichePunkte;
+    private final String name;
+    private final String aufgabenstellung;
+    private final int moeglichePunkte;
 
     public Aufgabe(String name, String text, int moeglichePunkte) {
         this.name = name;
