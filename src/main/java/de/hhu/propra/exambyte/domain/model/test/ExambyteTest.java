@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 public class ExambyteTest {
 
     @Id
-    private Integer id;
-    private String name;
-    private LocalDateTime startDatum;
-    private LocalDateTime endDatum;
+    private final Integer id;
+    private final String name;
+    private final LocalDateTime startDatum;
+    private final LocalDateTime endDatum;
 
     public ExambyteTest(Integer id, String name, LocalDateTime startDatum, LocalDateTime endDatum) {
         this.id = id;
