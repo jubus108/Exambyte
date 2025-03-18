@@ -22,27 +22,27 @@ public class ExambyteTest {
         this.ergebnisVeroeffentlichungsDatum = ergebnisVeroeffentlichungsDatum;
     }
 
-    public Integer getId() {
+    public Integer id() {
         return id;
     }
 
-    public  String getName() {
+    public  String name() {
         return name;
     }
 
-    public List<Aufgabe> getAufgaben() {
+    public List<Aufgabe> aufgaben() {
         return aufgaben;
     }
 
-    public LocalDateTime getStartDatum() {
+    public LocalDateTime startDatum() {
         return startDatum;
     }
 
-    public LocalDateTime getEndDatum() {
+    public LocalDateTime endDatum() {
         return endDatum;
     }
 
-    public LocalDateTime getGebnisVeroeffentlichungsDatum() {
+    public LocalDateTime ergebnisVeroeffentlichungsDatum() {
         return ergebnisVeroeffentlichungsDatum;
     }
 

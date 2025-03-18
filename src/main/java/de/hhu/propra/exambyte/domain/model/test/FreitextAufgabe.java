@@ -8,9 +8,9 @@ public class FreitextAufgabe extends Aufgabe {
 
     @Override
     public String toString() {
-        return "FreitextAufgabe{name='" + getName() + "'" +
-                ", aufgabenstellung='" + getAufgabenstellung() + "'" +
-                ", moeglichePunkte=" + getMoeglichePunkte() +
+        return "FreitextAufgabe{name='" + name() + "'" +
+                ", aufgabenstellung='" + aufgabenstellung() + "'" +
+                ", moeglichePunkte=" + moeglichePunkte() +
                 "}";
     }
 }

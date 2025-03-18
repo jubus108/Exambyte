@@ -53,12 +53,12 @@ public class TestAggregatTest {
         ExambyteTest test = new ExambyteTest(id, name, aufgaben, startDatum, endDatum, ergebnisVeroeffentlichungsdatum);
         // Assert
         assertThat(test).isNotNull();
-        assertThat(test.getId()).isEqualTo(id);
-        assertThat(test.getName()).isEqualTo(name);
-        assertThat(test.getAufgaben()).isEqualTo(aufgaben);
-        assertThat(test.getStartDatum()).isEqualTo(startDatum);
-        assertThat(test.getEndDatum()).isEqualTo(endDatum);
-        assertThat(test.getGebnisVeroeffentlichungsDatum()).isEqualTo(ergebnisVeroeffentlichungsdatum);
+        assertThat(test.id()).isEqualTo(id);
+        assertThat(test.name()).isEqualTo(name);
+        assertThat(test.aufgaben()).isEqualTo(aufgaben);
+        assertThat(test.startDatum()).isEqualTo(startDatum);
+        assertThat(test.endDatum()).isEqualTo(endDatum);
+        assertThat(test.ergebnisVeroeffentlichungsDatum()).isEqualTo(ergebnisVeroeffentlichungsdatum);
     }
 
     @Test
@@ -86,9 +86,9 @@ public class TestAggregatTest {
         FreitextAufgabe freitextAufgabe = new FreitextAufgabe(name, aufgabenstellung, moeglichePunkte);
         // Assert
         assertThat(freitextAufgabe).isNotNull();
-        assertThat(freitextAufgabe.getName()).isEqualTo(name);
-        assertThat(freitextAufgabe.getAufgabenstellung()).isEqualTo(aufgabenstellung);
-        assertThat(freitextAufgabe.getMoeglichePunkte()).isEqualTo(moeglichePunkte);
+        assertThat(freitextAufgabe.name()).isEqualTo(name);
+        assertThat(freitextAufgabe.aufgabenstellung()).isEqualTo(aufgabenstellung);
+        assertThat(freitextAufgabe.moeglichePunkte()).isEqualTo(moeglichePunkte);
     }
 
     @Test
@@ -136,8 +136,8 @@ public class TestAggregatTest {
         MultipleChoiceAufgabe multipleChoiceAufgabe = new MultipleChoiceAufgabe(name, aufgabenstellung, antworten, moeglichePunkte);
         // Assert
         assertThat(multipleChoiceAufgabe).isNotNull();
-        assertThat(multipleChoiceAufgabe.getName()).isEqualTo(name);
-        assertThat(multipleChoiceAufgabe.getAufgabenstellung()).isEqualTo(aufgabenstellung);
+        assertThat(multipleChoiceAufgabe.name()).isEqualTo(name);
+        assertThat(multipleChoiceAufgabe.aufgabenstellung()).isEqualTo(aufgabenstellung);
         assertThat(antworten).isEqualTo(antworten);
     }
 }

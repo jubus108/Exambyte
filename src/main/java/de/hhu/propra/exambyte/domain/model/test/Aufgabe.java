@@ -12,15 +12,15 @@ public abstract class Aufgabe {
         this.moeglichePunkte = moeglichePunkte;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
-    public String getAufgabenstellung() {
+    public String aufgabenstellung() {
         return aufgabenstellung;
     }
 
-    public int getMoeglichePunkte() {
+    public int moeglichePunkte() {
         return moeglichePunkte;
     }
 }

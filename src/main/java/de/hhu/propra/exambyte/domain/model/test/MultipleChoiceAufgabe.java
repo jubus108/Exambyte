@@ -11,15 +11,15 @@ public class MultipleChoiceAufgabe extends Aufgabe{
         this.antworten = fragen;
     }
 
-    public List<Antwort> getAntworten() {
+    public List<Antwort> antworten() {
         return antworten;
     }
 
     @Override
     public String toString() {
-        return "MultipleChoiceAufgabe{name='" + getName() + "'" +
-                ", aufgabenstellung='" + getAufgabenstellung() + "'" +
-                ", moeglichePunkte=" + getMoeglichePunkte() +
+        return "MultipleChoiceAufgabe{name='" + name() + "'" +
+                ", aufgabenstellung='" + aufgabenstellung() + "'" +
+                ", moeglichePunkte=" + moeglichePunkte() +
                 "}";
     }
 }
