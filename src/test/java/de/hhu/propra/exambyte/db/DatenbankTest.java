@@ -90,7 +90,7 @@ public class DatenbankTest {
     @DisplayName("Beim Versuch eine nicht vorhandene Id zu finden gibt es eine Fehlermeldung")
     void test_findNutzerInById_fail() throws Exception {
         // Act
-        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findById(999);  // Eine ID, die nicht existiert
+        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findById(999L);  // Eine ID, die nicht existiert
         // Assert
         assertThat(nichtGefunden).isNotPresent();  // Erwartet, dass nichts gefunden wird
     }

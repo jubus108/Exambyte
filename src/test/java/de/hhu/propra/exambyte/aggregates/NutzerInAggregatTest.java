@@ -12,7 +12,7 @@ public class NutzerInAggregatTest {
     @DisplayName("NutzerIn wird korrekt initialisiert")
     void test_nutzerInKonstruktor() {
         // Arrange
-        Integer expectedId = 1;
+        Long expectedId = 1L;
         String expectedUsername = "Nutzer";
         // Act
         NutzerIn nutzerIn = new NutzerIn(expectedId, expectedUsername);
@@ -26,7 +26,7 @@ public class NutzerInAggregatTest {
     @DisplayName("toString Methode von Nutzerin gibt erwarten String zurück")
     void test_toString() {
         // Arrange
-        Integer id = 1;
+        Long id = 1L;
         String username = "NutzerIn";
         NutzerIn nutzerIn = new NutzerIn(id, username);
         // Act

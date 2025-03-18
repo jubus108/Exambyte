@@ -6,15 +6,19 @@ import org.springframework.data.annotation.PersistenceCreator;
 public class NutzerIn {
 
     @Id
-    private final Integer id;
+    private final Long id;
     private final String username;
 
-    public NutzerIn(Integer id, String username) {
+    public NutzerIn(Long id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public Integer id() {
+    public NutzerIn withId(Long id) {
+        return new NutzerIn(id, username);
+    }
+
+    public Long id() {
         return id;
     }
 

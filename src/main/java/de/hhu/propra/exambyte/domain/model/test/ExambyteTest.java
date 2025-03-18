@@ -1,19 +1,21 @@
 package de.hhu.propra.exambyte.domain.model.test;
 
+import org.springframework.data.annotation.Id;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ExambyteTest {
 
-    //@Id
-    private final Integer id;
+    @Id
+    private final Long id;
     private final String name;
     private final List<Aufgabe> aufgaben;
     private final LocalDateTime startDatum;
     private final LocalDateTime endDatum;
     private final LocalDateTime ergebnisVeroeffentlichungsDatum;
 
-    public ExambyteTest(Integer id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum, LocalDateTime ergebnisVeroeffentlichungsDatum) {
+    public ExambyteTest(Long id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum, LocalDateTime ergebnisVeroeffentlichungsDatum) {
         this.id = id;
         this.name = name;
         this.aufgaben = aufgaben;
@@ -22,7 +24,11 @@ public class ExambyteTest {
         this.ergebnisVeroeffentlichungsDatum = ergebnisVeroeffentlichungsDatum;
     }
 
-    public Integer id() {
+    public ExambyteTest withId(Long id) {
+        return new ExambyteTest(id, name, aufgaben, startDatum, endDatum, ergebnisVeroeffentlichungsDatum);
+    }
+
+    public Long id() {
         return id;
     }
 
