@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-	//id 'org.flywaydb.flyway' version '11.1.0'
+	id 'org.flywaydb.flyway' version '11.1.0'
 }
 
 group = 'de.hhu.propra'
@@ -38,6 +38,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	//DBS + Migration
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.flywaydb:flyway-core'
 	implementation "org.flywaydb:flyway-database-postgresql"
