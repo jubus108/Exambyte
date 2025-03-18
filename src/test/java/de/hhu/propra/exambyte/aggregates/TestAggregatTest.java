@@ -48,8 +48,9 @@ public class TestAggregatTest {
         List<Aufgabe> aufgaben = List.of(a1, a2, a3, a4);
         LocalDateTime startDatum = LocalDateTime.of(2025, 3, 1, 8, 0);
         LocalDateTime endDatum = startDatum.plusWeeks(1);
+        LocalDateTime ergebnisVeroeffentlichungsdatum = endDatum.plusWeeks(1);
         // Act
-        ExambyteTest test = new ExambyteTest(id, name, aufgaben, startDatum, endDatum);
+        ExambyteTest test = new ExambyteTest(id, name, aufgaben, startDatum, endDatum, ergebnisVeroeffentlichungsdatum);
         // Assert
         assertThat(test).isNotNull();
         assertThat(test.getId()).isEqualTo(id);
@@ -57,6 +58,7 @@ public class TestAggregatTest {
         assertThat(test.getAufgaben()).isEqualTo(aufgaben);
         assertThat(test.getStartDatum()).isEqualTo(startDatum);
         assertThat(test.getEndDatum()).isEqualTo(endDatum);
+        assertThat(test.getGebnisVeroeffentlichungsDatum()).isEqualTo(ergebnisVeroeffentlichungsdatum);
     }
 
     @Test

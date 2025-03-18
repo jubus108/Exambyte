@@ -11,13 +11,15 @@ public class ExambyteTest {
     private final List<Aufgabe> aufgaben;
     private final LocalDateTime startDatum;
     private final LocalDateTime endDatum;
+    private final LocalDateTime ergebnisVeroeffentlichungsDatum;
 
-    public ExambyteTest(Integer id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum) {
+    public ExambyteTest(Integer id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum, LocalDateTime ergebnisVeroeffentlichungsDatum) {
         this.id = id;
         this.name = name;
         this.aufgaben = aufgaben;
         this.startDatum = startDatum;
         this.endDatum = endDatum;
+        this.ergebnisVeroeffentlichungsDatum = ergebnisVeroeffentlichungsDatum;
     }
 
     public Integer getId() {
@@ -38,6 +40,10 @@ public class ExambyteTest {
 
     public LocalDateTime getEndDatum() {
         return endDatum;
+    }
+
+    public LocalDateTime getGebnisVeroeffentlichungsDatum() {
+        return ergebnisVeroeffentlichungsDatum;
     }
 
     @Override
