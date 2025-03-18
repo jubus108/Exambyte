@@ -11,11 +11,11 @@ public class NutzerIn {
         this.username = username;
     }
 
-    public Integer getId() {
+    public Integer id() {
         return id;
     }
 
-    public String getUsername() {
+    public String username() {
         return username;
     }
 
