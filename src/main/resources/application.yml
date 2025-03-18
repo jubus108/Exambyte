@@ -6,6 +6,10 @@ logging:
         org:
             springframework:
                 security: info
+                jdbc:
+                    core:
+                        trace
+        root: error
 
 spring:
     datasource:
