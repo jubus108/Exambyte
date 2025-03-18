@@ -18,8 +18,8 @@ public class NutzerInAggregatTest {
         NutzerIn nutzerIn = new NutzerIn(expectedId, expectedUsername);
         // Assert
         assertThat(nutzerIn).isNotNull();
-        assertThat(nutzerIn.getId()).isEqualTo(expectedId);
-        assertThat(nutzerIn.getUsername()).isEqualTo(expectedUsername);
+        assertThat(nutzerIn.id()).isEqualTo(expectedId);
+        assertThat(nutzerIn.username()).isEqualTo(expectedUsername);
     }
 
     @Test

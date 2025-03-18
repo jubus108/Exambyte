@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class AppUserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+public class NutzerInAppService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     @Value("${exambyte.rollen.admin}")
     private Set<String> admins;

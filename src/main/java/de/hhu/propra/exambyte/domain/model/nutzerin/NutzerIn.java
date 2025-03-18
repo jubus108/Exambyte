@@ -1,8 +1,11 @@
 package de.hhu.propra.exambyte.domain.model.nutzerin;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
+
 public class NutzerIn {
 
-    //@Id
+    @Id
     private final Integer id;
     private final String username;
 
@@ -11,11 +14,11 @@ public class NutzerIn {
         this.username = username;
     }
 
-    public Integer getId() {
+    public Integer id() {
         return id;
     }
 
-    public String getUsername() {
+    public String username() {
         return username;
     }
 
