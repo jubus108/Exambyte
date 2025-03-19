@@ -15,10 +15,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class NutzerInAppService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+public class AppUserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     @Value("${exambyte.rollen.admin}")
     private Set<String> admins;
+    @Value("${exambyte.rollen.tutor}")
+    private Set<String> tutors;
 
     private final DefaultOAuth2UserService defaultService = new DefaultOAuth2UserService();
 
@@ -26,7 +28,7 @@ public class NutzerInAppService implements OAuth2UserService<OAuth2UserRequest, 
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2User oauth2User = defaultService.loadUser(userRequest);
 
-        var attributes = oauth2User.getAttributes(); //keep existing attributes
+        var attributes = oauth2User.getAttributes();
 
         var authorities = new HashSet<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
@@ -37,8 +39,11 @@ public class NutzerInAppService implements OAuth2UserService<OAuth2UserRequest, 
         if (admins.contains(login)) {
             System.out.printf("GRANTING ADMIN PRIVILEGES TO USER %s%n", login);
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        } else if (tutors.contains(login)) {
+            System.out.printf("GRANTING TUTOR PRIVILEGES TO USER %s%n", login);
+            authorities.add(new SimpleGrantedAuthority("ROLE_TUTOR"));
         } else {
-            System.out.printf("DENYING ADMIN PRIVILEGES TO USER %s%n", login);
+            System.out.printf("DENYING PRIVILEGES TO USER %s%n", login);
         }
 
         return new DefaultOAuth2User(authorities, attributes, "login");

@@ -4,7 +4,7 @@ import de.hhu.propra.exambyte.application.services.ExamByteService;
 import de.hhu.propra.exambyte.config.MethodSecurityConfiguration;
 import de.hhu.propra.exambyte.configuration.WithMockOAuth2User;
 import de.hhu.propra.exambyte.web.AdminController;
-import de.hhu.propra.exambyte.web.KorrektorInKontroller;
+import de.hhu.propra.exambyte.web.KorrektorInController;
 import de.hhu.propra.exambyte.web.WebController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-@WebMvcTest({WebController.class, AdminController.class, KorrektorInKontroller.class})
+@WebMvcTest({WebController.class, AdminController.class, KorrektorInController.class})
 @Import(MethodSecurityConfiguration.class)
 public class ControllerTest {
 
