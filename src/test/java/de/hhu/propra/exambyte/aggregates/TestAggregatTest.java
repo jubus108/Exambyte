@@ -26,18 +26,20 @@ public class TestAggregatTest {
 
         Aufgabe a1 = new MultipleChoiceAufgabe("Geografie 1",
                 "Will ich aus 'ganda' einen Staat in Afrika machen, muss da vorne noch ein ...?",
+                4,
                 List.of(new Antwort("'Ti' tan", false),
                         new Antwort("'Pla' tin", false),
                         new Antwort("'Wolf' ram", false),
                         new Antwort("'U' ran", true)),
-                4);
+                "Dies ist eine Erklärung");
         Aufgabe a2 = new MultipleChoiceAufgabe("Freizeit 2",
                 "Was macht man mit Kaminholz?",
+                4,
                 List.of(new Antwort("adjektivwettlauf", false),
                         new Antwort("präpositionenjagd", false),
                         new Antwort("substantivralley", false),
                         new Antwort("verbrennen", true)),
-                4);
+                "Dies ist eine Erklärung");
         Aufgabe a3 = new FreitextAufgabe("Haushalt 1",
                 "Pasten Sie hier ihr Lieblingsrezept:",
                 5);
@@ -127,17 +129,20 @@ public class TestAggregatTest {
         String name = "Aufgabe #1";
         String aufgabenstellung = "Welches Schlüsselwort nutzt man, damit nur die Klassen innerhalb des gleichen Packages auf ein Attribut zugreifen können?";
         List<Antwort> antworten  = new ArrayList<>();
+        int moeglichePunkte = 8;
         antworten.add(new Antwort("private", false));
         antworten.add(new Antwort("keins", false));
         antworten.add(new Antwort("protected", true));
         antworten.add(new Antwort("public", false));
-        int moeglichePunkte = 8;
+        String erklaerung = "Auf ein mit 'public' gekennzeichnetes Attribut kann von überall zugegriffen werden. Ohne Schlüsselwort können nur...";
         // Act
-        MultipleChoiceAufgabe multipleChoiceAufgabe = new MultipleChoiceAufgabe(name, aufgabenstellung, antworten, moeglichePunkte);
+        MultipleChoiceAufgabe multipleChoiceAufgabe = new MultipleChoiceAufgabe(name, aufgabenstellung, moeglichePunkte,  antworten, erklaerung);
         // Assert
         assertThat(multipleChoiceAufgabe).isNotNull();
         assertThat(multipleChoiceAufgabe.name()).isEqualTo(name);
         assertThat(multipleChoiceAufgabe.aufgabenstellung()).isEqualTo(aufgabenstellung);
-        assertThat(antworten).isEqualTo(antworten);
+        assertThat(multipleChoiceAufgabe.moeglichePunkte()).isEqualTo(moeglichePunkte);
+        assertThat(multipleChoiceAufgabe.antworten()).isEqualTo(antworten);
+        assertThat(multipleChoiceAufgabe.erklaerung()).isEqualTo(erklaerung);
     }
 }
