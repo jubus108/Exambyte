@@ -1,7 +1,9 @@
 package de.hhu.propra.exambyte.application.services.repository;
 
 import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
+
 import java.util.Optional;
+import java.util.UUID;
 
 public interface NutzerInRepository {
 
@@ -13,8 +15,5 @@ public interface NutzerInRepository {
 
     boolean existsById(Integer id);
 
-    Optional<NutzerIn> findByUsername(String username);
-
     Iterable<NutzerIn> findAll();
-
 }

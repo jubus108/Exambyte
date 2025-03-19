@@ -1,9 +1,10 @@
-package de.hhu.propra.exambyte.helper;
+package de.hhu.propra.exambyte.configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

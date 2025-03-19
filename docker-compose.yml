@@ -4,7 +4,7 @@ services:
         ports:
             - "5432:5432"
         environment:
-            - "POSTGRES_USER=user"
-            - "POSTGRES_PASSWORD=iamgroot"
-#        volumes:
-#            - ./data:/var/lib/postgresql/data
+            - "POSTGRES_USER=${DB_USER}"
+            - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+        volumes:
+            - ./data:/var/lib/postgresql/data

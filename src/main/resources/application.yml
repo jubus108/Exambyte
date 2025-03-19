@@ -27,3 +27,4 @@ spring:
 exambyte:
     rollen:
         admin: jubus108
+        tutor:

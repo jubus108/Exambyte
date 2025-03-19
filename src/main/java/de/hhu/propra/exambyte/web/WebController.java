@@ -1,35 +1,41 @@
 package de.hhu.propra.exambyte.web;
 
-import de.hhu.propra.exambyte.config.AdminOnly;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.access.annotation.Secured;
+import de.hhu.propra.exambyte.application.services.ExamByteService;
+import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Map;
-import java.util.Objects;
-
 
 @Controller
-@SessionScope
 public class WebController {
 
-    public WebController() {}
+    private final ExamByteService service;
+
+    public WebController(ExamByteService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
-    public String login(Model model, @AuthenticationPrincipal OAuth2User oAuth2User) {
-        model.addAttribute("user", oAuth2User != null ? oAuth2User.getAttribute("login") : null);
-        return oAuth2User != null ? "redirect:/dashboard" :  "login";
+    public String login(Model model, @AuthenticationPrincipal OAuth2User principal) {
+
+        if (principal != null) {
+
+            Integer githubId = principal.getAttribute("id"); //  GitHub-Id
+            String username = principal.getAttribute("login"); // GitHub-Username
+
+            model.addAttribute("user", service.nutzerInHinzufuegen(githubId, username));
+            return redirectByRole(principal);
+        } else {
+            return "login";
+        }
     }
 
     @GetMapping("/dashboard")
-    public String dashboardPrivate(@AuthenticationPrincipal OAuth2User principal, Model model) {
+    public String dashboard(@AuthenticationPrincipal OAuth2User principal, Model model) {
         String login = principal.getAttribute("login");
         model.addAttribute("name", login);
         return "dashboard";
@@ -41,12 +47,16 @@ public class WebController {
         return principal.getAttributes();
     }
 
-    @GetMapping("/admin")
-    @Secured("ROLE_ADMIN")
-    public String admin(Model model, @AuthenticationPrincipal OAuth2User principal) {
-        model.addAttribute("user",
-                principal != null ? principal.getAttribute("login") : null
-        );
-        return "admin";
+    private String redirectByRole(@AuthenticationPrincipal OAuth2User principal) {
+        String roles = principal.getAttribute("authorities");
+        if (roles.contains("ROLE_ADMIN")) {
+            return "redirect:/admin/";
+        }
+        else if (roles.contains("ROLE_TUTOR")) {
+            return "redirect:/tutor/";
+        }
+        else {
+            return "redirect:/dashboard";
+        }
     }
 }

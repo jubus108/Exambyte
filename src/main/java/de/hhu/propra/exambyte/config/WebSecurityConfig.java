@@ -23,6 +23,4 @@ public class WebSecurityConfig{
                 .oauth2Login(Customizer.withDefaults());
         return chainBuilder.build();
     }
-
-
 }

@@ -1,21 +1,19 @@
 package de.hhu.propra.exambyte.db;
-
-import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
+import io.micrometer.observation.ObservationFilter;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
 public interface NutzerInDataRepository extends CrudRepository<NutzerInDto, Integer> {
-
-    NutzerInDto save(NutzerInDto nutzerIn);
+    NutzerInDto save(NutzerInDto nutzerInDto);
 
     void deleteById(Integer id);
 
-    Iterable<NutzerInDto> findAll();
-
     Optional<NutzerInDto> findById(Integer id);
+
+    Iterable<NutzerInDto> findAll();
 
     boolean existsById(Integer id);
 
-    Optional<NutzerIn> findByUsername(String username);
+    Optional<NutzerInDto> findByGithubId(Integer id);
 }

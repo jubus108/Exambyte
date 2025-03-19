@@ -1,8 +1,11 @@
 package de.hhu.propra.exambyte.aggregates;
 
+import de.hhu.propra.exambyte.db.NutzerInDto;
 import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -33,6 +36,6 @@ public class NutzerInAggregatTest {
         String toStringResult = nutzerIn.toString();
         // Assert
         assertThat(toStringResult).isNotNull();
-        assertThat(toStringResult).isEqualTo("Nutzer:in{id=" + id + ", username='" + username + "'}");
+        assertThat(toStringResult).isEqualTo("Nutzer:in{githubId=" + id + ", username='" + username + "'}");
     }
 }

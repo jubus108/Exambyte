@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class NutzerInRepositoryImpl implements NutzerInRepository {
@@ -19,7 +20,9 @@ public class NutzerInRepositoryImpl implements NutzerInRepository {
 
     @Override
     public NutzerIn save(NutzerIn nutzerIn) {
-        NutzerInDto nutzerInDto = toNutzerInDto(nutzerIn);
+        Integer existingDbKey =
+                nutzerInDataRepository.findByGithubId(nutzerIn.id()).map(NutzerInDto::id).orElse(null);
+        NutzerInDto nutzerInDto = toNutzerInDto(existingDbKey, nutzerIn);
         NutzerInDto saved = nutzerInDataRepository.save(nutzerInDto);
         return toNutzerIn(saved);
     }
@@ -27,6 +30,17 @@ public class NutzerInRepositoryImpl implements NutzerInRepository {
     @Override
     public void deleteById(Integer id) {
         nutzerInDataRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<NutzerIn> findById(Integer id) {
+        return nutzerInDataRepository.findByGithubId(id)
+                .map(this::toNutzerIn);
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return nutzerInDataRepository.existsById(id);
     }
 
     @Override
@@ -38,27 +52,11 @@ public class NutzerInRepositoryImpl implements NutzerInRepository {
         return result;
     }
 
-    @Override
-    public Optional<NutzerIn> findById(Integer id) {
-        return nutzerInDataRepository.findById(id)
-                .map(this::toNutzerIn);
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return nutzerInDataRepository.existsById(id);
-    }
-
-    @Override
-    public Optional<NutzerIn> findByUsername(String username) {
-        return nutzerInDataRepository.findByUsername(username);
-    }
-
     private NutzerIn toNutzerIn(NutzerInDto nutzerInDto) {
-        return new NutzerIn(nutzerInDto.id(), nutzerInDto.username());
+        return new NutzerIn(nutzerInDto.githubId(), nutzerInDto.username());
     }
 
-    private NutzerInDto toNutzerInDto(NutzerIn nutzerIn) {
-        return new NutzerInDto(nutzerIn.id(), nutzerIn.username());
+    private NutzerInDto toNutzerInDto(Integer existingDbKey, NutzerIn nutzerIn) {
+        return new NutzerInDto(existingDbKey, nutzerIn.id(), nutzerIn.username());
     }
 }

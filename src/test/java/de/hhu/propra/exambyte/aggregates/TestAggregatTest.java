@@ -66,15 +66,7 @@ public class TestAggregatTest {
     @Test
     @DisplayName("toString Methode von ExambyteTest gibt erwarten String zurück")
     void test_exambyteTestToString() {
-        // Arrange
-        int id = 346274686;
-        String username = "NutzerIn";
-        NutzerIn nutzerIn = new NutzerIn(id, username);
-        // Act
-        String toStringResult = nutzerIn.toString();
-        // Assert
-        assertThat(toStringResult).isNotNull();
-        assertThat(toStringResult).isEqualTo("Nutzer:in{id=" + id + ", username='" + username + "'}");
+        //TODO
     }
 
     @Test

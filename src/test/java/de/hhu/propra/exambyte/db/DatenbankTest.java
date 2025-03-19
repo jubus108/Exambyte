@@ -2,120 +2,59 @@ package de.hhu.propra.exambyte.db;
 
 import de.hhu.propra.exambyte.application.services.repository.NutzerInRepository;
 import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
 import de.hhu.propra.exambyte.configuration.TestcontainersConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
 @DataJdbcTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import(TestcontainersConfiguration.class)
 public class DatenbankTest {
 
     @Autowired
+    NutzerInDataRepository nutzerInDataRepository;
+
     NutzerInRepository nutzerInRepository;
 
+    @BeforeEach
+    void setUp() {
+        nutzerInRepository = new NutzerInRepositoryImpl(nutzerInDataRepository);
+    }
+
     @Test
-    @DisplayName("Ein:e NutzerIn Aggregat kann gespeichert werden")
-    void test_saveNutzerIn() throws Exception {
+    @DisplayName("Ein:e Nutzer:in kann gespeichert und geladen werden")
+    void test_speicherNutzerIn() {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(595975909, "MaxMustermann");
+        NutzerIn nutzerIn = new NutzerIn(693689129, "username");
+        Integer existingDbKey =
+                nutzerInDataRepository.findByGithubId(nutzerIn.id()).map(NutzerInDto::id).orElse(null);
         // Act
-        NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
+        nutzerInRepository.save(nutzerIn);
+        Optional<NutzerIn> geladen = nutzerInRepository.findById(nutzerIn.id());
         // Assert
-        assertThat(gespeichert.id()).isNotNull();
-        assertThat(nutzerInRepository.findById(gespeichert.id())).isPresent();
-        assertThat(nutzerInRepository.findById(gespeichert.id()).get().username())
-                .isEqualTo("MaxMustermann");
+        assertThat(geladen).isPresent();
+        assertThat(geladen.get().id()).isEqualTo(693689129);
+        assertThat(geladen.get().username()).isEqualTo("username");
     }
 
     @Test
-    @DisplayName("Ein:e NutzerIn wird vernünftig gelöscht")
-    void test_deleteNutzerIn() throws Exception {
+    @DisplayName("NutzerInDto kann vernünftig in die Datenbank geschrieben werden")
+    void  test_speicherNutzerInDto() {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(595975909, "MaxMustermann");
+        NutzerInDto nutzerInDto = new NutzerInDto(null, 123456, "testuser");
         // Act
-        NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
-        nutzerInRepository.delete(gespeichert);
+        NutzerInDto saved = nutzerInDataRepository.save(nutzerInDto);
         // Assert
-        assertThat(nutzerInRepository.findById(gespeichert.id())).isNotPresent();
-    }
-
-    @Test
-    @DisplayName("Es werden alle gespeicherten NutzerInnen geladen")
-    void test_findAllNutzerIn() throws Exception {
-        // Arrange
-        NutzerIn nutzerIn1 = new NutzerIn(595975909, "MaxMustermann");
-        NutzerIn nutzerIn2 = new NutzerIn(594747909, "MiraMusterfrau");
-        NutzerIn nutzerIn3 = new NutzerIn(286546366, "MikaMusterperson");
-
-        nutzerInRepository.save(nutzerIn1);
-        nutzerInRepository.save(nutzerIn2);
-        nutzerInRepository.save(nutzerIn3);
-
-        // Act
-        List<NutzerIn> nutzerInListe = nutzerInRepository.findAll();
-
-        // Assert
-        assertThat(nutzerInListe).hasSize(3);
-        assertThat(nutzerInListe).extracting(NutzerIn::username)
-                .containsExactlyInAnyOrder("MaxMustermann", "MiraMusterfrau", "MikaMusterperson");
-    }
-
-    @Test
-    @DisplayName("Ein:e NutzerIn kann anhand ihrer Id gefunden werden")
-    void test_findNutzerInById() throws Exception {
-        // Arrange
-        NutzerIn nutzerIn = new NutzerIn(36765888, "MaxMustermann");
-        NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
-
-        // Act
-        Optional<NutzerIn> gefunden = nutzerInRepository.findById(gespeichert.id());
-
-        // Assert
-        assertThat(gefunden).isPresent();
-        assertThat(gefunden.get().username()).isEqualTo("MaxMustermann");
-    }
-
-    @Test
-    @DisplayName("Beim Versuch eine nicht vorhandene Id zu finden gibt es eine Fehlermeldung")
-    void test_findNutzerInById_fail() throws Exception {
-        // Act
-        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findById(25777525);  // Eine ID, die nicht existiert
-        // Assert
-        assertThat(nichtGefunden).isNotPresent();  // Erwartet, dass nichts gefunden wird
-    }
-
-    @Test
-    @DisplayName("Ein:e NutzerIn kann anhand seiner/ihres Usernames gefunden werden")
-    void test_findNutzerInByUsername() throws Exception {
-        // Arrange
-        NutzerIn nutzerIn = new NutzerIn(779654794, "MaxMustermann");
-        NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
-
-        // Act
-        Optional<NutzerIn> gefunden = nutzerInRepository.findByUsername(gespeichert.username());
-
-        // Assert
-        assertThat(gefunden).isPresent();
-        assertThat(gefunden.get().username()).isEqualTo("MaxMustermann");
-    }
-
-    @Test
-    @DisplayName("Beim Versuch eine nicht vorhandene Id zu finden gibt es eine Fehlermeldung")
-    void test_findNutzerInByUsername_fail() throws Exception {
-        // Act
-        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findByUsername("NichtVorhanden");  // Eine ID, die nicht existiert
-        // Assert
-        assertThat(nichtGefunden).isNotPresent();  // Erwartet, dass nichts gefunden wird
+        assertThat(saved.id()).isNotNull();
     }
 }

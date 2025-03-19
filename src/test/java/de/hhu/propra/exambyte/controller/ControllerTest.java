@@ -1,25 +1,32 @@
 package de.hhu.propra.exambyte.controller;
 
+import de.hhu.propra.exambyte.application.services.ExamByteService;
 import de.hhu.propra.exambyte.config.MethodSecurityConfiguration;
-import de.hhu.propra.exambyte.helper.WithMockOAuth2User;
+import de.hhu.propra.exambyte.configuration.WithMockOAuth2User;
+import de.hhu.propra.exambyte.web.AdminController;
+import de.hhu.propra.exambyte.web.KorrektorInKontroller;
 import de.hhu.propra.exambyte.web.WebController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-@WebMvcTest(WebController.class)
+@WebMvcTest({WebController.class, AdminController.class, KorrektorInKontroller.class})
 @Import(MethodSecurityConfiguration.class)
-public class WebControllerTest {
+public class ControllerTest {
 
     @Autowired
     MockMvc mvc;
+
+    @MockitoBean
+    ExamByteService nutzerInService;
 
     @Test
     @DisplayName("Die Loginseite ist unter /login erreichbar")
@@ -69,7 +76,6 @@ public class WebControllerTest {
     void test_admin2() throws Exception {
         mvc.perform(get("/admin"))
                 .andExpect(status().isOk());
-                //.andExpect(model().attribute("name", "something");
+        //.andExpect(model().attribute("name", "something");
     }
-
 }
