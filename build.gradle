@@ -59,6 +59,13 @@ dependencies {
 	//implementation 'org.springframework.data:spring-data-commons'
 }
 
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/exambyte'
+	user = System.getenv('DB_USER') ?: 'defaultUser'  // Fallback-Wert falls die Umgebungsvariable nicht gesetzt ist
+	password = System.getenv('DB_PASSWORD') ?: 'defaultPassword'  // Fallback-Wert
+	locations = ['classpath:src/main/resources/db/migration']
+}
+
 //tasks.named('test') {
 test {
 	useJUnitPlatform()

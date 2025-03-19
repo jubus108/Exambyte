@@ -1,9 +1,10 @@
 package de.hhu.propra.exambyte.db;
-import io.micrometer.observation.ObservationFilter;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface NutzerInDataRepository extends CrudRepository<NutzerInDto, Integer> {
     NutzerInDto save(NutzerInDto nutzerInDto);
 

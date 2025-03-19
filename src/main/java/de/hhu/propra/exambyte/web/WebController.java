@@ -48,11 +48,14 @@ public class WebController {
     }
 
     private String redirectByRole(@AuthenticationPrincipal OAuth2User principal) {
-        String roles = principal.getAttribute("authorities");
-        if (roles.contains("ROLE_ADMIN")) {
+        // Retrieve the authorities (roles) from the OAuth2User
+        var authorities = principal.getAuthorities();
+
+        // Check for specific roles and redirect accordingly
+        if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
             return "redirect:/admin/";
         }
-        else if (roles.contains("ROLE_TUTOR")) {
+        else if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_TUTOR"))) {
             return "redirect:/tutor/";
         }
         else {
