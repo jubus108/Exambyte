@@ -15,7 +15,7 @@ spring:
     datasource:
         password: "${DB_PASSWORD}"
         username: "${DB_USER}"
-        url: jdbc:postgresql://localhost:5432/exambyte
+        url: jdbc:postgresql://localhost:5432/postgres
     security:
         oauth2:
             client:
