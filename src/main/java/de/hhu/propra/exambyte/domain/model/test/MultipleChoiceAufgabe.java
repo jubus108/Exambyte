@@ -8,7 +8,7 @@ public class MultipleChoiceAufgabe extends Aufgabe{
     private final String erklaerung;
 
     public MultipleChoiceAufgabe(String name, String aufgabenstellung, int moeglichePunkte, List<Antwort> fragen, String erklaerung) {
-        super(name, aufgabenstellung, moeglichePunkte);
+        super(AufgabeTyp.MULTIPLE_CHOICE, name, aufgabenstellung, moeglichePunkte);
         this.antworten = fragen;
         this.erklaerung = erklaerung;
     }
