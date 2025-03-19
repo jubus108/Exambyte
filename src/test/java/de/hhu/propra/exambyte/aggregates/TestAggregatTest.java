@@ -21,7 +21,7 @@ public class TestAggregatTest {
     @DisplayName("ExambyteTest wird korrekt initialisiert")
     void test_exambyteTestKonstruktor() {
         // Arrange
-        Long id = 1L;
+        int id = 24663478;
         String name = "Test #1";
 
         Aufgabe a1 = new MultipleChoiceAufgabe("Geografie 1",
@@ -67,7 +67,7 @@ public class TestAggregatTest {
     @DisplayName("toString Methode von ExambyteTest gibt erwarten String zurück")
     void test_exambyteTestToString() {
         // Arrange
-        Long id = 1L;
+        int id = 346274686;
         String username = "NutzerIn";
         NutzerIn nutzerIn = new NutzerIn(id, username);
         // Act

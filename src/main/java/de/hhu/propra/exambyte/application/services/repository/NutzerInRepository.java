@@ -6,12 +6,18 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface NutzerInRepository extends CrudRepository<NutzerIn, Long> {
+public interface NutzerInRepository {
+
     NutzerIn save(NutzerIn nutzerIn);
+
+    void deleteById(int id);
 
     List<NutzerIn> findAll();
 
-    Optional<NutzerIn> findById(Long id);
+    Optional<NutzerIn> findById(int id);
+
+    boolean existsById(int id);
 
     Optional<NutzerIn> findByUsername(String username);
+
 }

@@ -28,7 +28,7 @@ public class DatenbankTest {
     @DisplayName("Ein:e NutzerIn Aggregat kann gespeichert werden")
     void test_saveNutzerIn() throws Exception {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(null, "MaxMustermann");
+        NutzerIn nutzerIn = new NutzerIn(595975909, "MaxMustermann");
         // Act
         NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
         // Assert
@@ -42,7 +42,7 @@ public class DatenbankTest {
     @DisplayName("Ein:e NutzerIn wird vernünftig gelöscht")
     void test_deleteNutzerIn() throws Exception {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(null, "MaxMustermann");
+        NutzerIn nutzerIn = new NutzerIn(595975909, "MaxMustermann");
         // Act
         NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
         nutzerInRepository.delete(gespeichert);
@@ -54,9 +54,9 @@ public class DatenbankTest {
     @DisplayName("Es werden alle gespeicherten NutzerInnen geladen")
     void test_findAllNutzerIn() throws Exception {
         // Arrange
-        NutzerIn nutzerIn1 = new NutzerIn(null, "MaxMustermann");
-        NutzerIn nutzerIn2 = new NutzerIn(null, "MiraMusterfrau");
-        NutzerIn nutzerIn3 = new NutzerIn(null, "MikaMusterperson");
+        NutzerIn nutzerIn1 = new NutzerIn(595975909, "MaxMustermann");
+        NutzerIn nutzerIn2 = new NutzerIn(594747909, "MiraMusterfrau");
+        NutzerIn nutzerIn3 = new NutzerIn(286546366, "MikaMusterperson");
 
         nutzerInRepository.save(nutzerIn1);
         nutzerInRepository.save(nutzerIn2);
@@ -75,7 +75,7 @@ public class DatenbankTest {
     @DisplayName("Ein:e NutzerIn kann anhand ihrer Id gefunden werden")
     void test_findNutzerInById() throws Exception {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(null, "MaxMustermann");
+        NutzerIn nutzerIn = new NutzerIn(36765888, "MaxMustermann");
         NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
 
         // Act
@@ -90,7 +90,7 @@ public class DatenbankTest {
     @DisplayName("Beim Versuch eine nicht vorhandene Id zu finden gibt es eine Fehlermeldung")
     void test_findNutzerInById_fail() throws Exception {
         // Act
-        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findById(999L);  // Eine ID, die nicht existiert
+        Optional<NutzerIn> nichtGefunden = nutzerInRepository.findById(25777525);  // Eine ID, die nicht existiert
         // Assert
         assertThat(nichtGefunden).isNotPresent();  // Erwartet, dass nichts gefunden wird
     }
@@ -99,7 +99,7 @@ public class DatenbankTest {
     @DisplayName("Ein:e NutzerIn kann anhand seiner/ihres Usernames gefunden werden")
     void test_findNutzerInByUsername() throws Exception {
         // Arrange
-        NutzerIn nutzerIn = new NutzerIn(null, "MaxMustermann");
+        NutzerIn nutzerIn = new NutzerIn(779654794, "MaxMustermann");
         NutzerIn gespeichert = nutzerInRepository.save(nutzerIn);
 
         // Act

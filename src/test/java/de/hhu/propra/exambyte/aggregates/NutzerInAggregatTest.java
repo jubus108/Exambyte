@@ -12,7 +12,7 @@ public class NutzerInAggregatTest {
     @DisplayName("NutzerIn wird korrekt initialisiert")
     void test_nutzerInKonstruktor() {
         // Arrange
-        Long expectedId = 1L;
+        int expectedId = 849594326;
         String expectedUsername = "Nutzer";
         // Act
         NutzerIn nutzerIn = new NutzerIn(expectedId, expectedUsername);
@@ -26,13 +26,13 @@ public class NutzerInAggregatTest {
     @DisplayName("toString Methode von Nutzerin gibt erwarten String zurück")
     void test_toString() {
         // Arrange
-        Long id = 1L;
+        int id = 20570257;
         String username = "NutzerIn";
         NutzerIn nutzerIn = new NutzerIn(id, username);
         // Act
         String toStringResult = nutzerIn.toString();
         // Assert
         assertThat(toStringResult).isNotNull();
-        assertThat(toStringResult).isEqualTo("Nutzer:in{id=1, username='NutzerIn'}");
+        assertThat(toStringResult).isEqualTo("Nutzer:in{id=" + id + ", username='" + username + "'}");
     }
 }

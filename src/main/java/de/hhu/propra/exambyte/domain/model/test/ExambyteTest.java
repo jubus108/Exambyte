@@ -8,14 +8,14 @@ import java.util.List;
 public class ExambyteTest {
 
     @Id
-    private final Long id;
+    private final int id;
     private final String name;
     private final List<Aufgabe> aufgaben;
     private final LocalDateTime startDatum;
     private final LocalDateTime endDatum;
     private final LocalDateTime ergebnisVeroeffentlichungsDatum;
 
-    public ExambyteTest(Long id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum, LocalDateTime ergebnisVeroeffentlichungsDatum) {
+    public ExambyteTest(int id, String name, List<Aufgabe> aufgaben, LocalDateTime startDatum, LocalDateTime endDatum, LocalDateTime ergebnisVeroeffentlichungsDatum) {
         this.id = id;
         this.name = name;
         this.aufgaben = aufgaben;
@@ -24,11 +24,11 @@ public class ExambyteTest {
         this.ergebnisVeroeffentlichungsDatum = ergebnisVeroeffentlichungsDatum;
     }
 
-    public ExambyteTest withId(Long id) {
+    public ExambyteTest withId(int id) {
         return new ExambyteTest(id, name, aufgaben, startDatum, endDatum, ergebnisVeroeffentlichungsDatum);
     }
 
-    public Long id() {
+    public long id() {
         return id;
     }
 
