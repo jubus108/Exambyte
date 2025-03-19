@@ -4,20 +4,19 @@ import org.springframework.data.annotation.Id;
 
 public class NutzerIn {
 
-    @Id
-    private final int id;
+    private final Integer id;
     private final String username;
 
-    public NutzerIn(int id, String username) {
+    public NutzerIn(Integer id, String username) {
         this.id = id;
         this.username = username;
     }
 
-    public NutzerIn withId(int id) {
+    public NutzerIn withId(Integer id) {
         return new NutzerIn(id, username);
     }
 
-    public int id() {
+    public Integer id() {
         return id;
     }
 

@@ -1,6 +1,7 @@
 package de.hhu.propra.exambyte.application.services;
 
 import de.hhu.propra.exambyte.application.services.repository.NutzerInRepository;
+import de.hhu.propra.exambyte.db.NutzerInDto;
 import de.hhu.propra.exambyte.domain.model.nutzerin.NutzerIn;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,11 @@ public class NutzerInService {
         nutzerInRepository.deleteById(nutzerIn.id());
     }
 
-    public boolean isVorhanden(int id) {
+    public boolean isVorhanden(Integer id) {
         return nutzerInRepository.existsById(id);
     }
 
-    public List<NutzerIn> alleNutzerInnen() {
+    public Iterable<NutzerInDto> alleNutzerInnen() {
         return nutzerInRepository.findAll();
     }
 }
